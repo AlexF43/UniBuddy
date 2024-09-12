@@ -73,7 +73,7 @@ final class SubjectModel {
     }
     
     func daysUntilNextAssignmentString() -> String {
-        var daysUntilNextAssignment = daysUntilNextAssignment()
+        let daysUntilNextAssignment = daysUntilNextAssignment()
         
         guard let days = daysUntilNextAssignment else {
             return "No upcoming assignments"

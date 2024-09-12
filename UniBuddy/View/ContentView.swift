@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         // tabview with selection based on the value of "tabSelection"
         TabView(selection: $tabSelection) {
-            EmptyView()
+            GradeView()
                 .tabItem{
                     Label("Grades", systemImage: "plus.circle")
                 }
@@ -29,7 +29,7 @@ struct ContentView: View {
                 }
                 .tag(1)
             
-            EmptyView()
+            AssignmentView()
                 .tabItem {
                     Label("Assignments", systemImage: "book")
                 }
