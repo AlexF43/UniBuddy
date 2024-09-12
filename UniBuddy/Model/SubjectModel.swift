@@ -72,7 +72,6 @@ final class SubjectModel {
         return components.day
     }
     
-    
     func daysUntilNextAssignmentString() -> String {
         var daysUntilNextAssignment = daysUntilNextAssignment()
         
@@ -84,7 +83,7 @@ final class SubjectModel {
         case 0:
             return "today"
         case 1...:
-            return "in ()"
+            return "in (\(days) days)"
         default:
             return "No upcoming assignments"
         }
