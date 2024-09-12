@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct SubjectRowView: View {
+    var subject: SubjectModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(subject.subjectName)
+            Text("current grade \(subject.calculateSubjectGrade())%")
+            Text(subject.daysUntilNextAssignmentString())
+        }
+        
     }
 }
 
-#Preview {
-    SubjectRowView()
-}

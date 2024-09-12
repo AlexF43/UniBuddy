@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct AssignmnetRowView: View {
+    var assignment: AssignmentModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(assignment.taskName)
+                .font(.system(size: 16, weight: .bold))
+            Text("Weighting: \(assignment.weighting)%")
+            Text(assignment.dateDifferenceString())
+        }
     }
+    
+    
 }
 
-#Preview {
-    AssignmnetRowView()
-}
+
