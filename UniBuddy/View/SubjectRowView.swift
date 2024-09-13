@@ -10,12 +10,25 @@ import SwiftUI
 struct SubjectRowView: View {
     var subject: SubjectModel
     var body: some View {
-        VStack {
-            Text(subject.subjectName)
-            Text("current grade \(subject.calculateSubjectGrade())%")
-            Text(subject.daysUntilNextAssignmentString())
+        HStack {
+            VStack(alignment: .leading) {
+                Text(subject.subjectName)
+                    .font(.headline)
+                Text("\(subject.creditPoints) credit points")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                Text(subject.daysUntilNextAssignmentString())
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+            
         }
-        
+//        .padding()
+        .background(Color.white)
+//        .cornerRadius(10)
+//        .shadow(radius: 2)
     }
 }
 

@@ -8,11 +8,12 @@
 import Foundation
 import SwiftData
 
+
 @Model
 final class SubjectModel {
     var subjectName: String
     var creditPoints: Int
-    var assignments: [AssignmentModel]
+    @Relationship(deleteRule: .cascade) var assignments: [AssignmentModel]
     
     init(subjectName: String, creditPoints: Int, assignments: [AssignmentModel]) {
         self.subjectName = subjectName
@@ -20,34 +21,56 @@ final class SubjectModel {
         self.assignments = assignments
     }
     
+    func updateAssignment(_ assignment: AssignmentModel) {
+        if let index = assignments.firstIndex(where: { $0.id == assignment.id }) {
+            assignments[index] = assignment
+        }
+    }
     
-    func calculateSubjectGrade() -> Float {
+    func calculateCompletion() -> Float {
+        let completedAssignments = assignments.filter { $0.completed == true }
+        
+        guard !completedAssignments.isEmpty else {
+            return 0
+        }
+        
+        var totalWeightCompleted: Float = 0.0
+        
+        for assignment in completedAssignments {
+            totalWeightCompleted += assignment.weighting
+        }
+        return min(totalWeightCompleted/100, 1.0)
+    }
+    
+    func calculateMarkOfCompleted() -> Float {
         let gradedAssignments = assignments.filter { $0.grade != nil }
         
         guard !gradedAssignments.isEmpty else {
             return 0
         }
         
-        var totalWeightCompleted: Float = 0.0
         var totalGrade: Float = 0.0
         
         for assignment in gradedAssignments {
-            totalWeightCompleted += assignment.weighting
             
             if let grade = assignment.grade {
-                totalGrade += grade
+                totalGrade += grade*assignment.weighting/100
             }
         }
         
-        if totalWeightCompleted > 100 {
-            totalWeightCompleted = 100
+        return min(totalGrade/100, 1.0)
+    }
+    
+    func calculatePredictedGrade() -> Float {
+        let completion = calculateCompletion()
+        let markOfCompleted = calculateMarkOfCompleted()
+        
+        guard completion > 0 else {
+            print("Cannot calculate predicted grade: No assignments completed.")
+            return 0
         }
         
-        if totalGrade > 100 {
-            totalGrade = 100
-        }
-        
-        return totalGrade/totalWeightCompleted
+        return markOfCompleted / completion
     }
     
     /// returns the integer number of days until the next assignment is due

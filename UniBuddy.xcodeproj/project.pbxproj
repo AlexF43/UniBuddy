@@ -25,6 +25,7 @@
 		072667732C93E7E100CD58D4 /* AddAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667722C93E7E100CD58D4 /* AddAssignmentView.swift */; };
 		072667752C93E97A00CD58D4 /* SubjectDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667742C93E97A00CD58D4 /* SubjectDetailViewModel.swift */; };
 		072667772C93EACA00CD58D4 /* AddAssignmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667762C93EACA00CD58D4 /* AddAssignmentViewModel.swift */; };
+		072667792C94862700CD58D4 /* GradeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667782C94862700CD58D4 /* GradeCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		072667722C93E7E100CD58D4 /* AddAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssignmentView.swift; sourceTree = "<group>"; };
 		072667742C93E97A00CD58D4 /* SubjectDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewModel.swift; sourceTree = "<group>"; };
 		072667762C93EACA00CD58D4 /* AddAssignmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssignmentViewModel.swift; sourceTree = "<group>"; };
+		072667782C94862700CD58D4 /* GradeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				0726676A2C92E6AD00CD58D4 /* AddSubjectView.swift */,
 				072667642C927F0800CD58D4 /* AssignmentRowView.swift */,
 				072667662C92826D00CD58D4 /* SubjectRowView.swift */,
+				072667782C94862700CD58D4 /* GradeCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072667792C94862700CD58D4 /* GradeCellView.swift in Sources */,
 				0726676F2C93382A00CD58D4 /* SubjectDetailView.swift in Sources */,
 				0726674C2C916C2E00CD58D4 /* ContentView.swift in Sources */,
 				0726675C2C918E1F00CD58D4 /* SubjectModel.swift in Sources */,

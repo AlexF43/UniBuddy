@@ -11,6 +11,7 @@ struct AssignmentRowView: View {
     @Bindable var assignment: AssignmentModel
     @Environment(\.modelContext) private var modelContext
     @State private var showingMarkAlert = false
+    @State private var newGrade: String = ""
     
     var body: some View {
         HStack {
@@ -40,6 +41,7 @@ struct AssignmentRowView: View {
             
             if assignment.completed && assignment.grade == nil {
                 Button(action: {
+                    newGrade = "" 
                     showingMarkAlert = true
                 }) {
                     Image(systemName: "pencil.circle")
@@ -48,13 +50,17 @@ struct AssignmentRowView: View {
             }
         }
         .alert("Mark Assignment", isPresented: $showingMarkAlert) {
+            TextField("Grade", text: $newGrade)
+                .keyboardType(.decimalPad)
             Button("Cancel", role: .cancel) { }
             Button("Add Grade") {
-                assignment.grade = 100
-                try? modelContext.save()
+                if let grade = Float(newGrade) {
+                    assignment.grade = grade
+                    try? modelContext.save()
+                }
             }
         } message: {
-            Text("Do you want to add a grade to this completed assignment?")
+            Text("Enter the grade for this completed assignment:")
         }
     }
 }
