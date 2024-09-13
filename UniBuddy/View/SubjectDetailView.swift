@@ -6,54 +6,71 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SubjectDetailView: View {
-    @StateObject private var subjectViewModel = SubjectDetailViewModel()
-    @Environment(\.modelContext) private var modelContext
     var subject: SubjectModel
+    @StateObject private var viewModel = SubjectDetailViewModel()
+    @Environment(\.modelContext) private var modelContext
+    @State private var editMode: EditMode = .inactive
+    @State private var assignmentToEdit: AssignmentModel?
     
     var body: some View {
-        VStack {
-            Text("Predicted Grade: \(subject.calculateSubjectGrade())")
-            
-            HStack {
-                Text("Assignments")
-                Button(action: {
-                    subjectViewModel.isAddingAssignment = true
-                }) {
-                    Image(systemName: "plus")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(.white)
-                        .frame(width: 40, height: 40)
-                        .background(Color.blue)
-                        .clipShape(Circle())
-                        .shadow(radius: 4)
+        List {
+            Section(header: Text("Incomplete Assignments")) {
+                ForEach(incompleteAssignments) { assignment in
+                    AssignmentRowView(assignment: assignment)
                 }
-                .padding()
-                
-            }
-            List {
-                ForEach(subject.assignments) { assignment in
-                    NavigationLink(destination: AssignmentDetailView(assignment: assignment)) {
-                        VStack(alignment: .leading) {
-                            AssignmnetRowView(assignment: assignment)
-                        }
-                    }
-                }
-                .onDelete(perform: deleteAssignments)
+                .onDelete(perform: deleteIncompleteAssignments)
             }
             
+            Section(header: Text("Completed Assignments")) {
+                ForEach(completedAssignments) { assignment in
+                    AssignmentRowView(assignment: assignment)
+                }
+                .onDelete(perform: deleteCompletedAssignments)
+            }
         }
         .navigationTitle(subject.subjectName)
-        .sheet(isPresented: $subjectViewModel.isAddingAssignment) {
-            AddAssignmentView(isPresented: $subjectViewModel.isAddingAssignment, onAdd: { newAssignment in
-                subjectViewModel.addAssignment(subject, newAssignment, modelContext: modelContext)
+        .navigationBarItems(
+            leading: EditButton(),
+            trailing: addButton
+        )
+        .environment(\.editMode, $editMode)
+        .sheet(isPresented: $viewModel.isAddingAssignment) {
+            AddAssignmentView(isPresented: $viewModel.isAddingAssignment, onAdd: { newAssignment in
+                viewModel.addAssignment(subject, newAssignment, modelContext: modelContext)
             })
         }
+//        .sheet(item: $assignmentToEdit) { assignment in
+//            EditAssignmentView(assignment: assignment, isPresented: Binding(
+//                get: { assignmentToEdit != nil },
+//                set: { if !$0 { assignmentToEdit = nil } }
+//            ))
+//        }
     }
-    private func deleteAssignments(at offsets: IndexSet) {
-        subjectViewModel.deleteAssignments(subject, at: offsets, modelContext: modelContext)
+    
+    private var addButton: some View {
+        Button(action: {
+            viewModel.isAddingAssignment = true
+        }) {
+            Image(systemName: "plus")
+        }
+    }
+    
+    private var incompleteAssignments: [AssignmentModel] {
+        subject.assignments.filter { $0.completed == false }.sorted { $0.dueDate < $1.dueDate }
+    }
+    
+    private var completedAssignments: [AssignmentModel] {
+        subject.assignments.filter { $0.completed != false }.sorted { $0.dueDate > $1.dueDate }
+    }
+    
+    private func deleteIncompleteAssignments(at offsets: IndexSet) {
+        viewModel.deleteAssignments(subject, assignments: incompleteAssignments, at: offsets, modelContext: modelContext)
+    }
+    
+    private func deleteCompletedAssignments(at offsets: IndexSet) {
+        viewModel.deleteAssignments(subject, assignments: completedAssignments, at: offsets, modelContext: modelContext)
     }
 }
-
-

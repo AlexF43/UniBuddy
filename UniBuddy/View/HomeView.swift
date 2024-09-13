@@ -13,11 +13,19 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var subjects: [SubjectModel]
     
+    var sortedSubjects: [SubjectModel] {
+        subjects.sorted {
+            let days1 = $0.daysUntilNextAssignment() ?? Int.max
+            let days2 = $1.daysUntilNextAssignment() ?? Int.max
+            return days1 < days2
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(subjects) { subject in
+                    ForEach(sortedSubjects) { subject in
                         NavigationLink(destination: SubjectDetailView(subject: subject)) {
                             SubjectRowView(subject: subject)
                         }
@@ -47,8 +55,9 @@ struct HomeView: View {
     }
     
     private func deleteSubjects(offsets: IndexSet) {
-        for index in offsets {
-            modelContext.delete(subjects[index])
+        let subjectsToDelete = offsets.map { sortedSubjects[$0] }
+        for subject in subjectsToDelete {
+            modelContext.delete(subject)
         }
     }
 }

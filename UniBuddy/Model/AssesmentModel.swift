@@ -14,6 +14,7 @@ final class AssignmentModel {
     var taskDescription: String?
     var weighting: Float
     var dueDate: Date
+    var completed: Bool
     var grade: Float?
     
     init(taskName: String, taskDescription: String? = nil, weighting: Float, dueDate: Date, grade: Float? = nil) {
@@ -21,6 +22,7 @@ final class AssignmentModel {
         self.taskDescription = taskDescription
         self.weighting = weighting
         self.dueDate = dueDate
+        self.completed = false
         self.grade = grade
     }
     

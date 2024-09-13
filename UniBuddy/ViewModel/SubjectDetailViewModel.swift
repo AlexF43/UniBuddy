@@ -16,10 +16,12 @@ class SubjectDetailViewModel: ObservableObject {
         try? modelContext.save()
     }
     
-    func deleteAssignments(_ subject: SubjectModel, at offsets: IndexSet, modelContext: ModelContext) {
-        for index in offsets {
-            let assignment = subject.assignments[index]
-            subject.assignments.remove(at: index)
+    func deleteAssignments(_ subject: SubjectModel, assignments: [AssignmentModel], at offsets: IndexSet, modelContext: ModelContext) {
+        let assignmentsToDelete = offsets.map { assignments[$0] }
+        for assignment in assignmentsToDelete {
+            if let index = subject.assignments.firstIndex(where: { $0.id == assignment.id }) {
+                subject.assignments.remove(at: index)
+            }
             modelContext.delete(assignment)
         }
         try? modelContext.save()
