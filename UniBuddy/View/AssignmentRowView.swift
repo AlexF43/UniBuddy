@@ -11,14 +11,15 @@ struct AssignmnetRowView: View {
     var assignment: AssignmentModel
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(assignment.taskName)
-                .font(.system(size: 16, weight: .bold))
-            Text("Weighting: \(assignment.weighting)%")
+                .font(.headline)
             Text(assignment.dateDifferenceString())
+                .font(.subheadline)
+            Text("Weighting: \(assignment.weighting, specifier: "%.1f")%")
+                .font(.subheadline)
         }
     }
-    
     
 }
 
