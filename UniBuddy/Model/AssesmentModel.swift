@@ -26,8 +26,10 @@ final class AssignmentModel {
     
     func dateDifferenceString() -> String {
         let calendar = Calendar.current
-        let today = Date()
-        let components = calendar.dateComponents([.day], from: today, to: dueDate)
+        let today = calendar.startOfDay(for: Date())
+        let dueDateStart = calendar.startOfDay(for: dueDate)
+        
+        let components = calendar.dateComponents([.day], from: today, to: dueDateStart)
         
         guard let days = components.day else {
             return "Unknown due date"

@@ -53,8 +53,8 @@ final class SubjectModel {
     /// returns the integer number of days until the next assignment is due
     /// used for sorting the subjects by what is due next
     func daysUntilNextAssignment() -> Int? {
-        let currentDate = Date()
         let calendar = Calendar.current
+        let currentDate = calendar.startOfDay(for: Date())
         
         // filters out assignments in the past
         let upcomingAssignments = assignments.filter { $0.dueDate > currentDate }
@@ -81,9 +81,11 @@ final class SubjectModel {
         
         switch days {
         case 0:
-            return "today"
-        case 1...:
-            return "in (\(days) days)"
+            return "Next assignment due today"
+        case 1:
+            return "Next assignment due tomorrow"
+        case 2...:
+            return "Next assignment due in (\(days) days)"
         default:
             return "No upcoming assignments"
         }
