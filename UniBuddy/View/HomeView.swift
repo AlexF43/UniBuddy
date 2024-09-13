@@ -19,12 +19,7 @@ struct HomeView: View {
                 List {
                     ForEach(subjects) { subject in
                         NavigationLink(destination: SubjectDetailView(subject: subject)) {
-                            VStack(alignment: .leading) {
-                                Text(subject.subjectName)
-                                    .font(.headline)
-                                Text("Credit Points: \(subject.creditPoints)")
-                                    .font(.subheadline)
-                            }
+                            SubjectRowView(subject: subject)
                         }
                     }
                     .onDelete(perform: deleteSubjects)

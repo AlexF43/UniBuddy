@@ -29,7 +29,7 @@ struct ContentView: View {
                 }
                 .tag(1)
             
-            AssignmentView()
+            EmptyView()
                 .tabItem {
                     Label("Assignments", systemImage: "book")
                 }

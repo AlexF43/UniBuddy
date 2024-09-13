@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-@MainActor
+//@MainActor
 class HomeViewModel: ObservableObject {
     @Published var isAddingSubject = false
     

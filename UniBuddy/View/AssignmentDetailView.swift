@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-struct AssignmentView: View {
+struct AssignmentDetailView: View {
+    var assignment: AssignmentModel
     var body: some View {
         Text("Assignments")
     }
 }
 
-#Preview {
-    AssignmentView()
-}

@@ -15,13 +15,16 @@
 		0726675A2C918C3500CD58D4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667592C918C3500CD58D4 /* HomeView.swift */; };
 		0726675C2C918E1F00CD58D4 /* SubjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726675B2C918E1F00CD58D4 /* SubjectModel.swift */; };
 		072667612C918F4700CD58D4 /* GradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667602C918F4600CD58D4 /* GradeView.swift */; };
-		072667632C918F5900CD58D4 /* AssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667622C918F5900CD58D4 /* AssignmentView.swift */; };
+		072667632C918F5900CD58D4 /* AssignmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667622C918F5900CD58D4 /* AssignmentDetailView.swift */; };
 		072667652C927F0800CD58D4 /* AssignmnetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667642C927F0800CD58D4 /* AssignmnetRowView.swift */; };
 		072667672C92826D00CD58D4 /* SubjectRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667662C92826D00CD58D4 /* SubjectRowView.swift */; };
 		0726676B2C92E6AD00CD58D4 /* AddSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726676A2C92E6AD00CD58D4 /* AddSubjectView.swift */; };
 		0726676D2C92E6FD00CD58D4 /* AddSubjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726676C2C92E6FD00CD58D4 /* AddSubjectViewModel.swift */; };
 		0726676F2C93382A00CD58D4 /* SubjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0726676E2C93382A00CD58D4 /* SubjectDetailView.swift */; };
 		072667712C93385100CD58D4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667702C93385100CD58D4 /* HomeViewModel.swift */; };
+		072667732C93E7E100CD58D4 /* AddAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667722C93E7E100CD58D4 /* AddAssignmentView.swift */; };
+		072667752C93E97A00CD58D4 /* SubjectDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667742C93E97A00CD58D4 /* SubjectDetailViewModel.swift */; };
+		072667772C93EACA00CD58D4 /* AddAssignmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667762C93EACA00CD58D4 /* AddAssignmentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,13 +37,16 @@
 		072667592C918C3500CD58D4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0726675B2C918E1F00CD58D4 /* SubjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectModel.swift; sourceTree = "<group>"; };
 		072667602C918F4600CD58D4 /* GradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeView.swift; sourceTree = "<group>"; };
-		072667622C918F5900CD58D4 /* AssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentView.swift; sourceTree = "<group>"; };
+		072667622C918F5900CD58D4 /* AssignmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailView.swift; sourceTree = "<group>"; };
 		072667642C927F0800CD58D4 /* AssignmnetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmnetRowView.swift; sourceTree = "<group>"; };
 		072667662C92826D00CD58D4 /* SubjectRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectRowView.swift; sourceTree = "<group>"; };
 		0726676A2C92E6AD00CD58D4 /* AddSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubjectView.swift; sourceTree = "<group>"; };
 		0726676C2C92E6FD00CD58D4 /* AddSubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubjectViewModel.swift; sourceTree = "<group>"; };
 		0726676E2C93382A00CD58D4 /* SubjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailView.swift; sourceTree = "<group>"; };
 		072667702C93385100CD58D4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		072667722C93E7E100CD58D4 /* AddAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssignmentView.swift; sourceTree = "<group>"; };
+		072667742C93E97A00CD58D4 /* SubjectDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailViewModel.swift; sourceTree = "<group>"; };
+		072667762C93EACA00CD58D4 /* AddAssignmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssignmentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +112,9 @@
 				0726674B2C916C2E00CD58D4 /* ContentView.swift */,
 				072667592C918C3500CD58D4 /* HomeView.swift */,
 				072667602C918F4600CD58D4 /* GradeView.swift */,
-				072667622C918F5900CD58D4 /* AssignmentView.swift */,
+				072667622C918F5900CD58D4 /* AssignmentDetailView.swift */,
 				0726676E2C93382A00CD58D4 /* SubjectDetailView.swift */,
+				072667722C93E7E100CD58D4 /* AddAssignmentView.swift */,
 				0726676A2C92E6AD00CD58D4 /* AddSubjectView.swift */,
 				072667642C927F0800CD58D4 /* AssignmnetRowView.swift */,
 				072667662C92826D00CD58D4 /* SubjectRowView.swift */,
@@ -119,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				0726676C2C92E6FD00CD58D4 /* AddSubjectViewModel.swift */,
+				072667742C93E97A00CD58D4 /* SubjectDetailViewModel.swift */,
+				072667762C93EACA00CD58D4 /* AddAssignmentViewModel.swift */,
 				072667702C93385100CD58D4 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
@@ -198,11 +207,14 @@
 				0726674C2C916C2E00CD58D4 /* ContentView.swift in Sources */,
 				0726675C2C918E1F00CD58D4 /* SubjectModel.swift in Sources */,
 				072667612C918F4700CD58D4 /* GradeView.swift in Sources */,
-				072667632C918F5900CD58D4 /* AssignmentView.swift in Sources */,
+				072667632C918F5900CD58D4 /* AssignmentDetailView.swift in Sources */,
+				072667772C93EACA00CD58D4 /* AddAssignmentViewModel.swift in Sources */,
+				072667732C93E7E100CD58D4 /* AddAssignmentView.swift in Sources */,
 				0726675A2C918C3500CD58D4 /* HomeView.swift in Sources */,
 				0726674E2C916C2E00CD58D4 /* AssesmentModel.swift in Sources */,
 				072667672C92826D00CD58D4 /* SubjectRowView.swift in Sources */,
 				072667712C93385100CD58D4 /* HomeViewModel.swift in Sources */,
+				072667752C93E97A00CD58D4 /* SubjectDetailViewModel.swift in Sources */,
 				0726676B2C92E6AD00CD58D4 /* AddSubjectView.swift in Sources */,
 				072667652C927F0800CD58D4 /* AssignmnetRowView.swift in Sources */,
 				0726676D2C92E6FD00CD58D4 /* AddSubjectViewModel.swift in Sources */,
