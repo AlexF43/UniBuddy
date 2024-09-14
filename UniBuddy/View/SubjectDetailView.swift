@@ -18,18 +18,22 @@ struct SubjectDetailView: View {
     var body: some View {
         VStack {
             List {
-                Section(header: Text("Incomplete Assignments")) {
-                    ForEach(incompleteAssignments) { assignment in
-                        AssignmentRowView(assignment: assignment)
+                if (!incompleteAssignments.isEmpty) {
+                    Section(header: Text("Incomplete Assignments")) {
+                        ForEach(incompleteAssignments) { assignment in
+                            AssignmentRowView(assignment: assignment)
+                        }
+                        .onDelete(perform: deleteIncompleteAssignments)
                     }
-                    .onDelete(perform: deleteIncompleteAssignments)
                 }
                 
-                Section(header: Text("Completed Assignments")) {
-                    ForEach(completedAssignments) { assignment in
-                        AssignmentRowView(assignment: assignment)
+                if (!completedAssignments.isEmpty) {
+                    Section(header: Text("Completed Assignments")) {
+                        ForEach(completedAssignments) { assignment in
+                            AssignmentRowView(assignment: assignment)
+                        }
+                        .onDelete(perform: deleteCompletedAssignments)
                     }
-                    .onDelete(perform: deleteCompletedAssignments)
                 }
             }
             .navigationTitle(subject.subjectName)

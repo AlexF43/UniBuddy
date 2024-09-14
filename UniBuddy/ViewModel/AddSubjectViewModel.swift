@@ -9,8 +9,8 @@ import Foundation
 
 class AddSubjectViewModel: ObservableObject {
 
-    @Published var subjectName = ""
-    @Published var creditPoints = ""
+    @Published var subjectName: String = ""
+    @Published var creditPoints: String = ""
     
     var isValid: Bool {
         !subjectName.isEmpty && !creditPoints.isEmpty && Int(creditPoints) != nil

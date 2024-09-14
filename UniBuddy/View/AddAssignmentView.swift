@@ -13,20 +13,46 @@ struct AddAssignmentView: View {
     var onAdd: (AssignmentModel) -> Void
     
     var body: some View {
-        NavigationView {
-            Form {
-                TextField("Task Name", text: $viewModel.taskName)
-                TextField("Weighting (%)", text: $viewModel.weighting)
-                    .keyboardType(.decimalPad)
-                DatePicker("Due Date", selection: $viewModel.dueDate, displayedComponents: [.date])
+        NavigationStack {
+            VStack {
+                Form {
+                    TextField("Task Name", text: $viewModel.taskName)
+                    
+                    VStack(alignment: .leading, spacing: 5) {
+                        TextField("Weighting (%)", text: $viewModel.weighting)
+                            .keyboardType(.decimalPad)
+                        
+                        if (viewModel.weighting != "" && Double(viewModel.weighting) == nil) {
+                            Text("Please enter a valid number for weighting")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    
+                    DatePicker("Due Date", selection: $viewModel.dueDate, displayedComponents: [.date])
+                }
                 
-                Button("Add Assignment") {
+                Spacer()
+                
+                Button(action: {
                     if let newAssignment = viewModel.createAssignment() {
                         onAdd(newAssignment)
                         isPresented = false
                     }
+                }) {
+                    Text("Add Assignment")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(viewModel.isValid ? Color.blue : Color.gray)
+                        )
                 }
                 .disabled(!viewModel.isValid)
+                .padding(.horizontal)
+                .padding(.bottom, 20)
             }
             .navigationTitle("Add Assignment")
             .navigationBarItems(trailing: Button("Cancel") {
@@ -35,4 +61,3 @@ struct AddAssignmentView: View {
         }
     }
 }
-
