@@ -19,7 +19,7 @@ struct ContentView: View {
         TabView(selection: $tabSelection) {
             GradeView()
                 .tabItem{
-                    Label("Grades", systemImage: "plus.circle")
+                    Label("Grades", systemImage: "chart.bar")
                 }
                 .tag(0)
             
@@ -32,7 +32,7 @@ struct ContentView: View {
             
             AssignmentsView()
                 .tabItem {
-                    Label("Assignments", systemImage: "book")
+                    Label("Assignments", systemImage: "list.bullet")
                 }
                 .tag(2)
             

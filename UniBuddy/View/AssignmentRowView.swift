@@ -17,6 +17,9 @@ struct AssignmentRowView: View {
     var body: some View {
         HStack {
             Button(action: {
+                if (assignment.completed == true) {
+                    assignment.grade = nil
+                }
                 assignment.completed.toggle()
                 try? modelContext.save()
             }) {
@@ -27,25 +30,39 @@ struct AssignmentRowView: View {
             VStack(alignment: .leading) {
                 Text(assignment.taskName)
                     .font(.headline)
-                    .strikethrough(assignment.completed)
                 Text(assignment.dateDifferenceString())
                     .font(.subheadline)
                 Text("Weighting: \(assignment.weighting, specifier: "%.1f")%")
                     .font(.subheadline)
-                if let grade = assignment.grade {
-                    Text("Grade: \(grade, specifier: "%.1f")%")
-                        .font(.subheadline)
-                }
             }
+                
             
             Spacer()
             
-            if assignment.completed && assignment.grade == nil {
+            if (assignment.completed) {
                 Button(action: {
-                    newGrade = "" 
+                    newGrade = ""
                     showingMarkAlert = true
                 }) {
-                    Image(systemName: "pencil.circle")
+                    
+                    if let grade = assignment.grade {
+                        Text("Grade: \(grade, specifier: "%.1f")%")
+                            .font(.subheadline)
+                    } else {
+                        HStack(spacing: 5) {
+                            Text("Mark")
+                                .font(.system(size: 14, weight: .medium))
+                            Image(systemName: "pencil")
+                                .font(.system(size: 14))
+                        }
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(
+                            Capsule()
+                                .fill(Color.blue)
+                        )
+                    }
                 }
                 .buttonStyle(.borderless)
             }
@@ -61,7 +78,7 @@ struct AssignmentRowView: View {
                 }
             }
         } message: {
-            Text("Enter the grade for this completed assignment:")
+            Text("Enter the percentage mark recieved for this assignment")
         }
     }
 }

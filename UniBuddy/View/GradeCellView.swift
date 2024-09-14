@@ -35,12 +35,6 @@ struct SubjectCellView: View {
                     Text("\(Int(subject.calculateCompletion() * 100))% done")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    if let first = subject.assignments.first?.completed {
-                        if (first == true) {
-                            Text("yes")
-                        }
-
-                    }
                 }
             }
             Spacer()

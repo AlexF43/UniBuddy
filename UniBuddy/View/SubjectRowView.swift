@@ -15,20 +15,16 @@ struct SubjectRowView: View {
                 Text(subject.subjectName)
                     .font(.headline)
                 Text("\(subject.creditPoints) credit points")
-                    .font(.subheadline)
+                    .font(.body)
                     .foregroundColor(.secondary)
                 Text(subject.daysUntilNextAssignmentString())
-                    .font(.caption)
+                    .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             
             Spacer()
             
         }
-//        .padding()
-        .background(Color.white)
-//        .cornerRadius(10)
-//        .shadow(radius: 2)
     }
 }
 
