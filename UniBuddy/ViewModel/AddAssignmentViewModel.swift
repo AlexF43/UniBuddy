@@ -22,7 +22,7 @@ class AddAssignmentViewModel: ObservableObject {
         guard let weight = Float(weighting), !taskName.isEmpty else {
             return nil
         }
-        return AssignmentModel(taskName: taskName, weighting: weight, dueDate: dueDate)
+        return AssignmentModel(taskName: taskName, weighting: weight, dueDate: dueDate, completed: false)
     }
     
 }

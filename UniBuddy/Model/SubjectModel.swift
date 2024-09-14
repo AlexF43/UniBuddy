@@ -42,6 +42,22 @@ final class SubjectModel {
         return min(totalWeightCompleted/100, 1.0)
     }
     
+    func calculateWeightOfMarked() -> Float {
+        let gradedAssignments = assignments.filter { $0.grade != nil }
+        
+        guard !gradedAssignments.isEmpty else {
+            return 0
+        }
+        
+        var totalWeight: Float = 0.0
+        
+        for assignment in gradedAssignments {
+            totalWeight += assignment.weighting
+        }
+        
+        return min(totalWeight/100, 1.0)
+    }
+    
     func calculateMarkOfCompleted() -> Float {
         let gradedAssignments = assignments.filter { $0.grade != nil }
         
@@ -62,7 +78,7 @@ final class SubjectModel {
     }
     
     func calculatePredictedGrade() -> Float {
-        let completion = calculateCompletion()
+        let completion = calculateWeightOfMarked()
         let markOfCompleted = calculateMarkOfCompleted()
         
         guard completion > 0 else {

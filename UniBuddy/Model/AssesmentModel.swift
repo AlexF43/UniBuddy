@@ -17,13 +17,14 @@ final class AssignmentModel {
     var grade: Float?
     @Relationship(inverse: \SubjectModel.assignments) var subject: SubjectModel?
     
-    init(taskName: String, weighting: Float, dueDate: Date, grade: Float? = nil) {
+    init(taskName: String, weighting: Float, dueDate: Date, completed: Bool ,grade: Float? = nil) {
         self.taskName = taskName
         self.weighting = weighting
         self.dueDate = dueDate
-        self.completed = false
+        self.completed = completed
         self.grade = grade
     }
+    
     
     func dateDifferenceString() -> String {
         let calendar = Calendar.current

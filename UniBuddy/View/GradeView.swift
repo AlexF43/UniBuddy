@@ -53,8 +53,10 @@ struct GradeView: View {
         var totalCreditPoints = 0
         var totalWeightedMark: Float = 0.0
         for subject in subjects {
-            totalCreditPoints += subject.creditPoints
-            totalWeightedMark += Float(subject.calculatePredictedGrade())*Float(subject.creditPoints)
+            if (subject.calculateWeightOfMarked() != 0) {
+                totalCreditPoints += subject.creditPoints
+                totalWeightedMark += Float(subject.calculatePredictedGrade())*Float(subject.creditPoints)
+            }
         }
         
         return (totalWeightedMark/Float(totalCreditPoints)) * 100
@@ -65,23 +67,25 @@ struct GradeView: View {
         var totalWeightedGrade = 0
         
         for subject in subjects {
-            totalCreditPoints += subject.creditPoints
-            let grade = subject.calculatePredictedGrade() * 100
-            switch(grade) {
-            case 85...100:
-                totalWeightedGrade += Int(7)*subject.creditPoints
-            case 75..<85:
-                totalWeightedGrade += Int(6)*subject.creditPoints
-            case 65..<75:
-                totalWeightedGrade += Int(5)*subject.creditPoints
-            case 50..<65:
-                totalWeightedGrade += Int(4)*subject.creditPoints
-            case ..<50:
-                print("failed")
-                break
-            default:
-                print("no grade")
-                break
+            if (subject.calculateWeightOfMarked() != 0) {
+                totalCreditPoints += subject.creditPoints
+                let grade = subject.calculatePredictedGrade() * 100
+                switch(grade) {
+                case 85...100:
+                    totalWeightedGrade += Int(7)*subject.creditPoints
+                case 75..<85:
+                    totalWeightedGrade += Int(6)*subject.creditPoints
+                case 65..<75:
+                    totalWeightedGrade += Int(5)*subject.creditPoints
+                case 50..<65:
+                    totalWeightedGrade += Int(4)*subject.creditPoints
+                case ..<50:
+                    print("failed")
+                    break
+                default:
+                    print("no grade")
+                    break
+                }
             }
         }
         

@@ -17,32 +17,38 @@ struct SubjectDetailView: View {
     
     var body: some View {
         VStack {
-            List {
-                if (!incompleteAssignments.isEmpty) {
-                    Section(header: Text("Incomplete Assignments")) {
-                        ForEach(incompleteAssignments) { assignment in
-                            AssignmentRowView(assignment: assignment)
+            if(!subject.assignments.isEmpty) {
+                List {
+                    if (!incompleteAssignments.isEmpty) {
+                        Section(header: Text("Incomplete Assignments")) {
+                            ForEach(incompleteAssignments) { assignment in
+                                AssignmentRowView(assignment: assignment)
+                            }
+                            .onDelete(perform: deleteIncompleteAssignments)
                         }
-                        .onDelete(perform: deleteIncompleteAssignments)
+                    }
+                    
+                    if (!completedAssignments.isEmpty) {
+                        Section(header: Text("Completed Assignments")) {
+                            ForEach(completedAssignments) { assignment in
+                                AssignmentRowView(assignment: assignment)
+                            }
+                            .onDelete(perform: deleteCompletedAssignments)
+                        }
                     }
                 }
-                
-                if (!completedAssignments.isEmpty) {
-                    Section(header: Text("Completed Assignments")) {
-                        ForEach(completedAssignments) { assignment in
-                            AssignmentRowView(assignment: assignment)
-                        }
-                        .onDelete(perform: deleteCompletedAssignments)
-                    }
+            } else {
+                VStack(alignment: .center) {
+                    Spacer()
+                    Text("No Assignments?")
+                        .font(.title)
+                    Text("Try adding one using the button below to get started")
+                        .font(.subheadline)
+                    Spacer()
+                    Spacer()
                 }
             }
-            .navigationTitle(subject.subjectName)
-
-            .sheet(isPresented: $viewModel.isAddingAssignment) {
-                AddAssignmentView(isPresented: $viewModel.isAddingAssignment, onAdd: { newAssignment in
-                    viewModel.addAssignment(subject, newAssignment, modelContext: modelContext)
-                })
-            }
+            
             Button(action: {
                 viewModel.isAddingAssignment = true
             }) {
@@ -54,6 +60,13 @@ struct SubjectDetailView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
             .padding()
+        }
+        .navigationTitle(subject.subjectName)
+
+        .sheet(isPresented: $viewModel.isAddingAssignment) {
+            AddAssignmentView(isPresented: $viewModel.isAddingAssignment, onAdd: { newAssignment in
+                viewModel.addAssignment(subject, newAssignment, modelContext: modelContext)
+            })
         }
 
     }
