@@ -10,7 +10,10 @@ import SwiftData
 import Foundation
 
 struct GradeView: View {
-    @Query private var subjects: [SubjectModel]
+//    var subjects: [SubjectModel]
+    @Environment(\.modelContext) private var modelContext
+//    @Query private
+    @State var subjects: [SubjectModel] = []
     
     let columns = [
         GridItem(.flexible()),
@@ -21,13 +24,17 @@ struct GradeView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(subjects) { subject in
+                    ForEach($subjects) { subject in
                         SubjectCellView(subject: subject)
                     }
                 }
                 .padding()
             }
             .navigationTitle("Your Grades")
+        }
+        .onAppear() {
+            let fetchDescriptor = FetchDescriptor<SubjectModel>()
+            subjects = try! modelContext.fetch(fetchDescriptor)
         }
     }
 }

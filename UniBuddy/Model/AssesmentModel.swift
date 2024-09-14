@@ -11,15 +11,14 @@ import SwiftData
 @Model
 final class AssignmentModel {
     var taskName: String
-    var taskDescription: String?
     var weighting: Float
     var dueDate: Date
     var completed: Bool
     var grade: Float?
+    @Relationship(inverse: \SubjectModel.assignments) var subject: SubjectModel?
     
-    init(taskName: String, taskDescription: String? = nil, weighting: Float, dueDate: Date, grade: Float? = nil) {
+    init(taskName: String, weighting: Float, dueDate: Date, grade: Float? = nil) {
         self.taskName = taskName
-        self.taskDescription = taskDescription
         self.weighting = weighting
         self.dueDate = dueDate
         self.completed = false

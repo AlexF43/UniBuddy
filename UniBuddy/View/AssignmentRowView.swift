@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct AssignmentRowView: View {
     @Bindable var assignment: AssignmentModel
     @Environment(\.modelContext) private var modelContext

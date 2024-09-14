@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct SubjectCellView: View {
-    @Bindable var subject: SubjectModel
+    @Binding var subject: SubjectModel
     
     var body: some View {
         VStack {

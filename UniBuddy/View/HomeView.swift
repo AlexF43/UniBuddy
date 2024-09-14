@@ -11,7 +11,7 @@ import SwiftData
 struct HomeView: View {
     @StateObject private var homeViewModel = HomeViewModel()
     @Environment(\.modelContext) private var modelContext
-    @Query private var subjects: [SubjectModel]
+    var subjects: [SubjectModel]
     
     var sortedSubjects: [SubjectModel] {
         subjects.sorted {

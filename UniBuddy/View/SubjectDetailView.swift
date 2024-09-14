@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct SubjectDetailView: View {
-    var subject: SubjectModel
+    @Bindable var subject: SubjectModel
     @StateObject private var viewModel = SubjectDetailViewModel()
     @Environment(\.modelContext) private var modelContext
     @State private var editMode: EditMode = .inactive

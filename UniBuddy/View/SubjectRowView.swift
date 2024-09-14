@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SubjectRowView: View {
-    var subject: SubjectModel
+    @Bindable var subject: SubjectModel
     var body: some View {
         HStack {
             VStack(alignment: .leading) {

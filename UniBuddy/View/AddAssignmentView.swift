@@ -16,7 +16,6 @@ struct AddAssignmentView: View {
         NavigationView {
             Form {
                 TextField("Task Name", text: $viewModel.taskName)
-                TextField("Task Description", text: $viewModel.taskDescription)
                 TextField("Weighting (%)", text: $viewModel.weighting)
                     .keyboardType(.decimalPad)
                 DatePicker("Due Date", selection: $viewModel.dueDate, displayedComponents: [.date])

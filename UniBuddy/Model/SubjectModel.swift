@@ -13,9 +13,9 @@ import SwiftData
 final class SubjectModel {
     var subjectName: String
     var creditPoints: Int
-    @Relationship(deleteRule: .cascade) var assignments: [AssignmentModel]
+    var assignments: [AssignmentModel] = []
     
-    init(subjectName: String, creditPoints: Int, assignments: [AssignmentModel]) {
+    init(subjectName: String, creditPoints: Int, assignments: [AssignmentModel] = []) {
         self.subjectName = subjectName
         self.creditPoints = creditPoints
         self.assignments = assignments
