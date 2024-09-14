@@ -80,18 +80,20 @@ final class SubjectModel {
         let currentDate = calendar.startOfDay(for: Date())
         
         // filters out assignments in the past
-        let upcomingAssignments = assignments.filter { $0.dueDate > currentDate }
+        let incompleteAssignments = assignments.filter { $0.completed == false }
         
         // sorts the assignments leaving the closest one in first place
-        let sortedAssignments = upcomingAssignments.sorted { $0.dueDate < $1.dueDate }
+        let sortedAssignments = incompleteAssignments.sorted { $0.dueDate < $1.dueDate }
         
         // getting the next assignent if it exists
         guard let nextAssignment = sortedAssignments.first else {
             return nil
         }
         
+        let startOfDueDate = calendar.startOfDay(for: nextAssignment.dueDate)
+        
         // returns the number of days between now and the due date of the next assignment
-        let components = calendar.dateComponents([.day], from: currentDate, to: nextAssignment.dueDate)
+        let components = calendar.dateComponents([.day], from: currentDate, to: startOfDueDate)
         return components.day
     }
     
@@ -103,12 +105,14 @@ final class SubjectModel {
         }
         
         switch days {
+        case ..<(-1):
+            return "Overdue assignment by \(days*(-1)) days"
         case 0:
             return "Next assignment due today"
         case 1:
             return "Next assignment due tomorrow"
         case 2...:
-            return "Next assignment due in (\(days) days)"
+            return "Next assignment due in \(days) days"
         default:
             return "No upcoming assignments"
         }
