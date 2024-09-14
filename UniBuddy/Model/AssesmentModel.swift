@@ -25,18 +25,23 @@ final class AssignmentModel {
         self.grade = grade
     }
     
-    
+    /// Returns a user readable string of the number of days to/past the assignments due dats
     func dateDifferenceString() -> String {
+        
+        //gets the datetime of the begining of the current day and the begining of the due date
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         let dueDateStart = calendar.startOfDay(for: dueDate)
         
+        //calculating the number of days between today and the due date
         let components = calendar.dateComponents([.day], from: today, to: dueDateStart)
         
+        //attempts to convert the date component number of days to an integer number of days
         guard let days = components.day else {
             return "Unknown due date"
         }
         
+        //returns the appropriate message to the user depending on the number of days to/past the due date
         switch days {
         case 0:
             return "Due today"

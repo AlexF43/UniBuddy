@@ -80,10 +80,10 @@ struct GradeView: View {
                 case 50..<65:
                     totalWeightedGrade += Int(4)*subject.creditPoints
                 case ..<50:
-                    print("failed")
+                    print("Fail")
                     break
                 default:
-                    print("no grade")
+                    print("No Grade")
                     break
                 }
             }

@@ -15,7 +15,6 @@ struct ContentView: View {
     @State private var tabSelection = 1
     
     var body: some View {
-        // tabview with selection based on the value of "tabSelection"
         TabView(selection: $tabSelection) {
             GradeView()
                 .tabItem{
