@@ -15,6 +15,7 @@ struct AddSubjectView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                // form to enter all new subejct infomation
                 Form {
                     TextField("Subject Name", text: $addSubjectViewModel.subjectName)
                     VStack(alignment: .leading, spacing: 5) {
@@ -22,6 +23,7 @@ struct AddSubjectView: View {
                             .keyboardType(.numberPad)
                         
                         if (addSubjectViewModel.creditPoints != "" && Int(addSubjectViewModel.creditPoints) == nil) {
+                            // communicate to the user to only enter numbers into the field
                             Text("Please only enter numbers for credit points")
                                 .font(.caption)
                                 .foregroundColor(.gray)
@@ -31,6 +33,7 @@ struct AddSubjectView: View {
                 
                 Spacer()
                 
+                // button for adding subejct that is only active when all entered items in the field are valid
                 Button(action: {
                     if let newSubject = addSubjectViewModel.createSubject() {
                         onAdd(newSubject)

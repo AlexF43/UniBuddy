@@ -73,8 +73,10 @@ struct AssignmentRowView: View {
             Button("Cancel", role: .cancel) { }
             Button("Add Grade") {
                 if let grade = Float(newGrade) {
-                    assignment.grade = grade
-                    try? modelContext.save()
+                    if (grade >= 0) {
+                        assignment.grade = grade
+                        try? modelContext.save()
+                    }
                 }
             }
         } message: {

@@ -26,6 +26,7 @@
 		072667772C93EACA00CD58D4 /* AddAssignmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667762C93EACA00CD58D4 /* AddAssignmentViewModel.swift */; };
 		072667792C94862700CD58D4 /* GradeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667782C94862700CD58D4 /* GradeCellView.swift */; };
 		072667972C95471500CD58D4 /* AssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667962C95471500CD58D4 /* AssignmentsView.swift */; };
+		072667992C96FD7800CD58D4 /* GradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072667982C96FD7800CD58D4 /* GradeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		072667762C93EACA00CD58D4 /* AddAssignmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssignmentViewModel.swift; sourceTree = "<group>"; };
 		072667782C94862700CD58D4 /* GradeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCellView.swift; sourceTree = "<group>"; };
 		072667962C95471500CD58D4 /* AssignmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsView.swift; sourceTree = "<group>"; };
+		072667982C96FD7800CD58D4 /* GradeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			children = (
 				0726676C2C92E6FD00CD58D4 /* AddSubjectViewModel.swift */,
 				072667742C93E97A00CD58D4 /* SubjectDetailViewModel.swift */,
+				072667982C96FD7800CD58D4 /* GradeViewModel.swift */,
 				072667762C93EACA00CD58D4 /* AddAssignmentViewModel.swift */,
 				072667702C93385100CD58D4 /* HomeViewModel.swift */,
 			);
@@ -218,6 +221,7 @@
 				0726674E2C916C2E00CD58D4 /* AssesmentModel.swift in Sources */,
 				072667672C92826D00CD58D4 /* SubjectRowView.swift in Sources */,
 				072667712C93385100CD58D4 /* HomeViewModel.swift in Sources */,
+				072667992C96FD7800CD58D4 /* GradeViewModel.swift in Sources */,
 				072667752C93E97A00CD58D4 /* SubjectDetailViewModel.swift in Sources */,
 				0726676B2C92E6AD00CD58D4 /* AddSubjectView.swift in Sources */,
 				072667652C927F0800CD58D4 /* AssignmentRowView.swift in Sources */,

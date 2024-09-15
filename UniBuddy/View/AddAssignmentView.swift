@@ -15,6 +15,7 @@ struct AddAssignmentView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                // display the form for the user to enter details for a new assignment
                 Form {
                     TextField("Task Name", text: $viewModel.taskName)
                     
@@ -22,6 +23,7 @@ struct AddAssignmentView: View {
                         TextField("Weighting (%)", text: $viewModel.weighting)
                             .keyboardType(.decimalPad)
                         
+                        // communicate to the user that only numbers should be entered
                         if (viewModel.weighting != "" && Double(viewModel.weighting) == nil) {
                             Text("Please enter a valid number for weighting")
                                 .font(.caption)
@@ -34,6 +36,7 @@ struct AddAssignmentView: View {
                 
                 Spacer()
                 
+                // button to add assignment, only active if all entered fields are valid
                 Button(action: {
                     if let newAssignment = viewModel.createAssignment() {
                         onAdd(newAssignment)

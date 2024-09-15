@@ -11,12 +11,10 @@ import SwiftData
 struct AssignmentsView: View {
     @Query private var subjects: [SubjectModel]
     @Environment(\.modelContext) private var modelContext
-    @State private var editMode: EditMode = .inactive
-    @State private var isAddingAssignment = false
-    @State private var assignmentToEdit: AssignmentModel?
     
     var body: some View {
         NavigationStack {
+            // list displaying all completed and incomplete assignments in seperate sections
             List {
                 Section(header: Text("Incomplete Assignments")) {
                     ForEach(incompleteAssignments) { assignment in
@@ -36,28 +34,27 @@ struct AssignmentsView: View {
         }
     }
     
-    
+    // get all incompleted assignments, filtered by closest dude date at the top
     private var incompleteAssignments: [AssignmentModel] {
         subjects.flatMap { $0.assignments }.filter { !$0.completed }.sorted { $0.dueDate < $1.dueDate }
     }
     
+    // get all completed assignments, filtered by closest dude date at the top
     private var completedAssignments: [AssignmentModel] {
         subjects.flatMap { $0.assignments }.filter { $0.completed }.sorted { $0.dueDate > $1.dueDate }
     }
     
-    private func addAssignment(_ assignment: AssignmentModel) {
-        modelContext.insert(assignment)
-        try? modelContext.save()
-    }
-    
+    /// delete incomplete assignments using default list delete
     private func deleteIncompleteAssignments(at offsets: IndexSet) {
         deleteAssignments(assignments: incompleteAssignments, at: offsets)
     }
     
+    /// delete completed assignments using default list delete
     private func deleteCompletedAssignments(at offsets: IndexSet) {
         deleteAssignments(assignments: completedAssignments, at: offsets)
     }
     
+    /// delete an assignment based off its index
     private func deleteAssignments(assignments: [AssignmentModel], at offsets: IndexSet) {
         for index in offsets {
             let assignmentToDelete = assignments[index]

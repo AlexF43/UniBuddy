@@ -12,13 +12,11 @@ struct SubjectDetailView: View {
     @Bindable var subject: SubjectModel
     @StateObject private var viewModel = SubjectDetailViewModel()
     @Environment(\.modelContext) private var modelContext
-    @State private var editMode: EditMode = .inactive
-    @State private var assignmentToEdit: AssignmentModel?
-    
     var body: some View {
         VStack {
             if(!subject.assignments.isEmpty) {
                 List {
+                    // display the subjects incomplete assignments
                     if (!incompleteAssignments.isEmpty) {
                         Section(header: Text("Incomplete Assignments")) {
                             ForEach(incompleteAssignments) { assignment in
@@ -28,6 +26,7 @@ struct SubjectDetailView: View {
                         }
                     }
                     
+                    // display the subjects completed assignments
                     if (!completedAssignments.isEmpty) {
                         Section(header: Text("Completed Assignments")) {
                             ForEach(completedAssignments) { assignment in
@@ -38,6 +37,7 @@ struct SubjectDetailView: View {
                     }
                 }
             } else {
+                // prompt the user to add assignments if there are none
                 VStack(alignment: .center) {
                     Spacer()
                     Text("No Assignments?")
@@ -49,6 +49,7 @@ struct SubjectDetailView: View {
                 }
             }
             
+            // show the sheet for adding assignments
             Button(action: {
                 viewModel.isAddingAssignment = true
             }) {
@@ -71,19 +72,22 @@ struct SubjectDetailView: View {
 
     }
     
-    
+    // filter the assignments and get just the incomplete ones
     private var incompleteAssignments: [AssignmentModel] {
         subject.assignments.filter { $0.completed == false }.sorted { $0.dueDate < $1.dueDate }
     }
     
+    // filter the assignments and get just the completed ones
     private var completedAssignments: [AssignmentModel] {
         subject.assignments.filter { $0.completed != false }.sorted { $0.dueDate > $1.dueDate }
     }
     
+    /// delete incomplete assigments using list functionality
     private func deleteIncompleteAssignments(at offsets: IndexSet) {
         viewModel.deleteAssignments(subject, assignments: incompleteAssignments, at: offsets, modelContext: modelContext)
     }
     
+    /// delete complete assignments using list funcionality
     private func deleteCompletedAssignments(at offsets: IndexSet) {
         viewModel.deleteAssignments(subject, assignments: completedAssignments, at: offsets, modelContext: modelContext)
     }

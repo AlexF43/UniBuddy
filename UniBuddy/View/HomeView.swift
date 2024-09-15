@@ -25,6 +25,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
+                // lists the subejects if there are any
                 if (!sortedSubjects.isEmpty) {
                     List {
                         ForEach(sortedSubjects) { subject in
@@ -35,6 +36,7 @@ struct HomeView: View {
                         .onDelete(perform: deleteSubjects)
                     }
                 } else {
+                    // if there are no subjects prompt the user to prefil them
                     Spacer()
                     VStack(alignment: .center) {
                         Text("Looks like you dont have any subjects yet")
@@ -44,6 +46,7 @@ struct HomeView: View {
                             .multilineTextAlignment(.center)
                     }
                     .padding()
+                    // button to prefill example data
                     Button(action: {
                         homeViewModel.seedExampleData(modelContext: modelContext)
                     }) {
@@ -60,6 +63,7 @@ struct HomeView: View {
                 Spacer()
                 Spacer()
                 
+                // add subject button, when clicked bring up sheet to add a subject on
                 Button(action: {
                     homeViewModel.isAddingSubject = true
                 }) {
@@ -81,7 +85,7 @@ struct HomeView: View {
         }
     }
     
-    //
+    // delete a subject from the list default delete behaviour by swiping
     func deleteSubjects(offsets: IndexSet) {
         let subjectsToDelete = offsets.map { sortedSubjects[$0] }
         for subject in subjectsToDelete {
