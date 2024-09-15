@@ -12,16 +12,19 @@ struct SubjectCellView: View {
     var body: some View {
         VStack {
             ZStack {
+                // background circle
                 Circle()
                     .stroke(Color.gray.opacity(0.2), lineWidth: 12)
                     .frame(width: 120, height: 120)
                 
+                // circle displaying completion % of the subject
                 Circle()
                     .trim(from: 0, to: CGFloat(subject.calculateCompletion()))
                     .stroke(Color.blue.opacity(0.4), lineWidth: 12)
                     .frame(width: 120, height: 120)
                     .rotationEffect(.degrees(-90))
                 
+                // circle showing the mark recieved for the subejct
                 Circle()
                     .trim(from: 0, to: CGFloat(subject.calculateMarkOfCompleted()))
                      .stroke(Color.blue, lineWidth: 12)
@@ -43,6 +46,7 @@ struct SubjectCellView: View {
                 .font(.headline)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
+            // if a grade is able to be predicted (assignments have been marked and completed, display it in % form)
             if (subject.calculatePredictedGrade() != 0) {
                 Text("Predicted grade: \(Int(subject.calculatePredictedGrade() * 100))%")
                     .font(.footnote)

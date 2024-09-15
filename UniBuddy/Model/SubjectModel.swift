@@ -99,7 +99,7 @@ final class SubjectModel {
         let markOfCompleted = calculateMarkOfCompleted()
         
         // if no assignments are completed then return 0 to prevent divide by zero error
-        guard completion >= 0 else {
+        guard completion > 0 else {
             print("Cannot calculate predicted grade: No assignments completed.")
             return 0
         }

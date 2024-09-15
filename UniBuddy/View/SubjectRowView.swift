@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// row view for an individual subject
 struct SubjectRowView: View {
     @Bindable var subject: SubjectModel
     var body: some View {

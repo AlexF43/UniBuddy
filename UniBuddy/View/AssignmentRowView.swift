@@ -46,7 +46,7 @@ struct AssignmentRowView: View {
                 }) {
                     
                     if let grade = assignment.grade {
-                        Text("Grade: \(grade, specifier: "%.1f")%")
+                        Text("\(grade, specifier: "%.1f")%")
                             .font(.subheadline)
                     } else {
                         HStack(spacing: 5) {
